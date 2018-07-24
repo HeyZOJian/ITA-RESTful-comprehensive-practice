@@ -35,6 +35,6 @@ public class CompanyService implements ICompanyService {
 
     @Override
     public Company deleteCompany(int id) {
-        return null;
+        return companyDao.deleteCompany(id);
     }
 }

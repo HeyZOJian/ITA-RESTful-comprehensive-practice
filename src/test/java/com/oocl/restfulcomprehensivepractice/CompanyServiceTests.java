@@ -69,4 +69,21 @@ public class CompanyServiceTests {
                 ,false);
     }
 
+    @Test
+    public void should_delete_successfully_when_delete_a_exist_company(){
+        companyService.addCompany(new Company("a",0,null));
+        Company company = companyService.deleteCompany(1);
+        assertEquals(company.getCompanyName(),"a");
+        assertEquals(companyService.getAllCompanies().size(),0);
+    }
+
+    @Test
+    public void should_delete_failed_when_delete_a_not_exist_company(){
+        companyService.addCompany(new Company("a",0,null));
+        Company company = companyService.deleteCompany(100);
+        assertEquals(company,null);
+        assertEquals(companyService.getAllCompanies().size(),1);
+    }
+
+
 }
