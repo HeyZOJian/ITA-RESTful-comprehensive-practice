@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.oocl.restfulcomprehensivepractice.domain.Company;
 import com.oocl.restfulcomprehensivepractice.service.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +26,18 @@ public class CompanyController {
         }
         else{
             res.put("message","add company failed");
+        }
+        return res;
+    }
+
+    @PutMapping("/companies/{companyId}")
+    public JSONObject updateCompany(@RequestBody Company company,@PathVariable int companyId){
+        JSONObject res = new JSONObject();
+        if(companyService.updateCompany(companyId,company)){
+            res.put("message","update company successfully");
+        }
+        else{
+            res.put("message","update company failed");
         }
         return res;
     }
