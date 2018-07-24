@@ -56,4 +56,11 @@ public class CompanyController {
         }
         return res;
     }
+
+    @GetMapping("/companies/page/{pageNum}/pageSize/{pageSize}")
+    public JSONObject getCompaniesByPaging(@PathVariable int pageNum,@PathVariable int pageSize){
+        JSONObject res = new JSONObject();
+        res.put("companies",companyService.getCompaniesByPaging(pageNum,pageSize));
+        return res;
+    }
 }
