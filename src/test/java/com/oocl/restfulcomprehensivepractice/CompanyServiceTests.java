@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -23,7 +25,11 @@ public class CompanyServiceTests {
 
     @Test
     public void should_return_all_companies() {
-        System.out.println(companyService.getAllCompanies());
+        companyService.addCompany(new Company("a",0,null));
+        companyService.addCompany(new Company("b",0,null));
+        List<Company> companies = companyService.getAllCompanies();
+        assertThat(companies.get(0).getCompanyName(),is("a"));
+        assertThat(companies.get(1).getCompanyName(),is("b"));
     }
 
 }
