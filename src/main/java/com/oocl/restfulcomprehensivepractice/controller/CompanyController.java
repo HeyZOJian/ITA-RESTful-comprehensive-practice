@@ -31,13 +31,28 @@ public class CompanyController {
     }
 
     @PutMapping("/companies/{companyId}")
-    public JSONObject updateCompany(@RequestBody Company company,@PathVariable int companyId){
+    public JSONObject updateCompany(@RequestBody Company company
+            ,@PathVariable int companyId){
         JSONObject res = new JSONObject();
         if(companyService.updateCompany(companyId,company)){
             res.put("message","update company successfully");
         }
         else{
             res.put("message","update company failed");
+        }
+        return res;
+    }
+
+    @DeleteMapping("/companies/{companyId}")
+    public JSONObject deleteCompany(@PathVariable int companyId){
+        JSONObject res = new JSONObject();
+        Company company = companyService.deleteCompany(companyId);
+        if(company!=null){
+            res.put("company",company);
+            res.put("message","delete company successfully");
+        }
+        else{
+            res.put("message","delete company failed");
         }
         return res;
     }
