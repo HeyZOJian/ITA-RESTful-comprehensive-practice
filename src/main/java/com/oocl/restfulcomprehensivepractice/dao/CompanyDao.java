@@ -14,6 +14,11 @@ public class CompanyDao implements ICompanyDao {
     }
 
     @Override
+    public List<Company> getCompaniesByPaging(int pageNum, int size) {
+        return DB.getCompaniesByPaging(pageNum,size);
+    }
+
+    @Override
     public Company getCompanyById(int id) {
         return DB.getCompanyById(id);
     }

@@ -85,5 +85,31 @@ public class CompanyServiceTests {
         assertEquals(companyService.getAllCompanies().size(),1);
     }
 
+    @Test
+    public void should_return_correct_paging_data_when_given_page_1_and_page_size(){
+        companyService.addCompany(new Company("a",0,null));
+        companyService.addCompany(new Company("b",0,null));
+        companyService.addCompany(new Company("c",0,null));
+        companyService.addCompany(new Company("d",0,null));
+        companyService.addCompany(new Company("e",0,null));
+        companyService.addCompany(new Company("f",0,null));
+        List<Company> companies = companyService.getCompaniesByPaging(1,3);
+        assertEquals(companies.size(),3);
+        assertEquals("a",companies.get(0).getCompanyName());
+        assertEquals("b",companies.get(1).getCompanyName());
+        assertEquals("c",companies.get(2).getCompanyName());
+    }
+
+    @Test
+    public void should_return_all_selete_paging_data_when_given_page_num_and_page_size_more_than_exist_companies_number(){
+        companyService.addCompany(new Company("a",0,null));
+        companyService.addCompany(new Company("b",0,null));
+        companyService.addCompany(new Company("c",0,null));
+        List<Company> companies = companyService.getCompaniesByPaging(1,10);
+        assertEquals(companies.size(),3);
+        assertEquals("a",companies.get(0).getCompanyName());
+        assertEquals("b",companies.get(1).getCompanyName());
+        assertEquals("c",companies.get(2).getCompanyName());
+    }
 
 }

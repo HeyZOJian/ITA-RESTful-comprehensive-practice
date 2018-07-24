@@ -37,4 +37,9 @@ public class CompanyService implements ICompanyService {
     public Company deleteCompany(int id) {
         return companyDao.deleteCompany(id);
     }
+
+    @Override
+    public List<Company> getCompaniesByPaging(int pageNum, int size) {
+        return companyDao.getCompaniesByPaging(pageNum,size);
+    }
 }
