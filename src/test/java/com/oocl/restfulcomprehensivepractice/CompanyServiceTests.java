@@ -45,4 +45,28 @@ public class CompanyServiceTests {
         assertEquals(company,null);
     }
 
+    @Test
+    public void should_update_successfully_and_return_true_when_update_a_exist_company_info(){
+        companyService.addCompany(new Company("a",0,null));
+        assertEquals(companyService.updateCompany(
+                1,
+                new Company("b",
+                        0,
+                        null))
+                ,true);
+        assertEquals(companyService.getCompanyById(1).getCompanyName(),"b");
+    }
+
+    @Test
+    public void should_update_failed_and_return_false_when_update_a_not_exist_company_info(){
+        companyService.addCompany(new Company("a",0,null));
+        companyService.updateCompany(1,new Company("b",0,null));
+        assertEquals(companyService.updateCompany(
+                100,
+                new Company("b",
+                        0,
+                        null))
+                ,false);
+    }
+
 }

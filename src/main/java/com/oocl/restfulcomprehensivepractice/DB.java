@@ -33,8 +33,13 @@ public class DB {
 
     public static boolean updateCompany(int id, Company company){
         try {
-            companyMap.put(id, company);
-            return true;
+            if(companyMap.get(id)!=null) {
+                companyMap.put(id, company);
+                return true;
+            }
+            else{
+                return false;
+            }
         }catch (Exception e){
             return false;
         }

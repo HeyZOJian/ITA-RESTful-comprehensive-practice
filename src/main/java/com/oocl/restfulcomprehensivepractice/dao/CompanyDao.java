@@ -15,7 +15,6 @@ public class CompanyDao implements ICompanyDao {
 
     @Override
     public Company getCompanyById(int id) {
-        System.out.println("====");
         return DB.getCompanyById(id);
     }
 

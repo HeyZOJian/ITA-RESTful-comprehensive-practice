@@ -30,7 +30,7 @@ public class CompanyService implements ICompanyService {
 
     @Override
     public boolean updateCompany(int id, Company company) {
-        return false;
+        return companyDao.updateCompany(id,company);
     }
 
     @Override
