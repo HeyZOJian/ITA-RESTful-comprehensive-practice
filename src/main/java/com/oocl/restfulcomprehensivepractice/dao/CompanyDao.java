@@ -2,9 +2,11 @@ package com.oocl.restfulcomprehensivepractice.dao;
 
 import com.oocl.restfulcomprehensivepractice.DB;
 import com.oocl.restfulcomprehensivepractice.domain.Company;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class CompanyDao implements ICompanyDao {
     @Override
     public List<Company> getAllCompanies() {
