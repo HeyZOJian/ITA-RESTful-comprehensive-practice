@@ -9,8 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -20,7 +19,7 @@ public class CompanyServiceTests {
 
     @Test
     public void should_add_successfully_when_add_company(){
-        assertThat(companyService.addCompany(new Company()),is(true));
+        assertEquals(companyService.addCompany(new Company()),true);
     }
 
     @Test
@@ -28,8 +27,22 @@ public class CompanyServiceTests {
         companyService.addCompany(new Company("a",0,null));
         companyService.addCompany(new Company("b",0,null));
         List<Company> companies = companyService.getAllCompanies();
-        assertThat(companies.get(0).getCompanyName(),is("a"));
-        assertThat(companies.get(1).getCompanyName(),is("b"));
+        assertEquals(companies.get(0).getCompanyName(),"a");
+        assertEquals(companies.get(1).getCompanyName(),"b");
+    }
+
+    @Test
+    public void should_return_correct_company_when_given_a_exist_id(){
+        companyService.addCompany(new Company("a",0,null));
+        companyService.addCompany(new Company("b",0,null));
+        Company company = companyService.getCompanyById(2);
+        assertEquals(company.getCompanyName(),"b");
+    }
+
+    @Test
+    public void should_return_null_when_given_a_not_exist_id(){
+        Company company = companyService.getCompanyById(100);
+        assertEquals(company,null);
     }
 
 }

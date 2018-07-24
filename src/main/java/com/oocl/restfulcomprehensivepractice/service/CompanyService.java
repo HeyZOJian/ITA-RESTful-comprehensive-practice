@@ -20,7 +20,7 @@ public class CompanyService implements ICompanyService {
 
     @Override
     public Company getCompanyById(int id) {
-        return null;
+        return companyDao.getCompanyById(id);
     }
 
     @Override
