@@ -1,16 +1,13 @@
-package com.oocl.restfulcomprehensivepractice.dao;
+package com.oocl.restfulcomprehensivepractice.service;
 
-import com.oocl.restfulcomprehensivepractice.DB;
 import com.oocl.restfulcomprehensivepractice.domain.Employee;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * Created by Vito Zhuang on 7/28/2018.
  */
-@Component
-public interface IEmployeeDao {
+public interface IEmployeeService {
 	List<Employee> findAll();
 
 	Employee findById(int id);

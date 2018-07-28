@@ -83,8 +83,14 @@ public class DB {
         }
     }
 
-    public static Employee deleteEmployee(int id) {
-        return employeeMap.remove(id);
+    public static boolean deleteEmployee(int id) {
+        if(employeeMap.get(id)!=null) {
+	        employeeMap.remove(id);
+            return true;
+        }
+        else{
+        	return false;
+        }
     }
 
 	public static List<Employee> getEmployeesByGender(String gender) {
