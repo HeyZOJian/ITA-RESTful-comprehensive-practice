@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class DB {
     private static int companyIdBuilder = 1;
@@ -73,13 +74,30 @@ public class DB {
         }
     }
 
-    public static Employee updateEmployee(int id, Employee employee) {
-        employeeMap.put(id, employee);
-        return employeeMap.get(id);
+    public static boolean updateEmployee(int id, Employee employee) {
+        if(employeeMap.get(id)!=null) {
+	        employeeMap.put(id, employee);
+	        return true;
+        }else{
+        	return false;
+        }
     }
 
     public static Employee deleteEmployee(int id) {
         return employeeMap.remove(id);
     }
 
+	public static List<Employee> getEmployeesByGender(String gender) {
+		return employeeMap.values().stream()
+				.filter(employee -> employee.getGender().equals(gender))
+				.collect(Collectors.toList());
+    }
+
+	public static List<Employee> getEmployeesByPaging(int page, int size) {
+		List<Employee> employees = getAllEmployees();
+		int fromIndex = (page - 1) * size;
+		int toIndex = (page - 1) * size + size;
+		toIndex = toIndex > employees.size()?employees.size():toIndex;
+		return employees.subList(fromIndex, toIndex);
+    }
 }
