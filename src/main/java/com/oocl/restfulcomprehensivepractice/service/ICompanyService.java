@@ -9,6 +9,6 @@ public interface ICompanyService {
     Company getCompanyById(int id);
     boolean addCompany(Company company);
     boolean updateCompany(int id,Company company);
-    Company deleteCompany(int id);
+    boolean deleteCompany(int id);
     List<Company> getCompaniesByPaging(int pageNum,int size);
 }

@@ -10,5 +10,5 @@ public interface ICompanyDao {
     Company getCompanyById(int id);
     boolean addCompany(Company company);
     boolean updateCompany(int id,Company company);
-    Company deleteCompany(int id);
+    boolean deleteCompany(int id);
 }

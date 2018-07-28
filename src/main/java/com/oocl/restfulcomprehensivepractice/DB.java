@@ -3,6 +3,7 @@ package com.oocl.restfulcomprehensivepractice;
 import com.oocl.restfulcomprehensivepractice.domain.Company;
 import com.oocl.restfulcomprehensivepractice.domain.Employee;
 
+import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,8 +54,18 @@ public class DB {
         }
     }
 
-    public static Company deleteCompany(int id) {
-        return companyMap.remove(id);
+    public static boolean deleteCompany(int id) {
+	    Company company = companyMap.get(id);
+	    if(company!=null){
+    	    List<Employee> employees = company.getEmployees();
+    	    for(Employee employee : employees){
+    		    employeeMap.remove(employee.getId());
+	        }
+	        return true;
+        }
+        else{
+	    	return false;
+	    }
     }
 
     public static List<Employee> getAllEmployees() {

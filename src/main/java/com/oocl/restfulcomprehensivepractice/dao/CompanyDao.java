@@ -34,7 +34,7 @@ public class CompanyDao implements ICompanyDao {
     }
 
     @Override
-    public Company deleteCompany(int id) {
+    public boolean deleteCompany(int id) {
         return DB.deleteCompany(id);
     }
 }

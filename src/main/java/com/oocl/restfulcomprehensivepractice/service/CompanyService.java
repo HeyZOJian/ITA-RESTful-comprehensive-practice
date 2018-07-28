@@ -34,7 +34,7 @@ public class CompanyService implements ICompanyService {
     }
 
     @Override
-    public Company deleteCompany(int id) {
+    public boolean deleteCompany(int id) {
         return companyDao.deleteCompany(id);
     }
 

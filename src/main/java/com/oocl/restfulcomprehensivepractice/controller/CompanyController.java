@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.oocl.restfulcomprehensivepractice.domain.Company;
 import com.oocl.restfulcomprehensivepractice.service.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,17 +46,14 @@ public class CompanyController {
     }
 
     @DeleteMapping("/companies/{companyId}")
-    public JSONObject deleteCompany(@PathVariable int companyId){
+    public ResponseEntity deleteCompany(@PathVariable int companyId){
         JSONObject res = new JSONObject();
-        Company company = companyService.deleteCompany(companyId);
-        if(company!=null){
-            res.put("company",company);
-            res.put("message","delete company successfully");
+        if(companyService.deleteCompany(companyId)){
+           return ResponseEntity.status(HttpStatus.OK).build();
         }
         else{
-            res.put("message","delete company failed");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return res;
     }
 
     @GetMapping("/companies/page/{pageNum}/pageSize/{pageSize}")
